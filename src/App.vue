@@ -1,27 +1,45 @@
 <template>
-  <form action="" @submit.prevent="addTodo">
+  <form @submit.prevent="addTodo">
     <fieldset role="group">
       <input 
         type="text" 
         placeholder="Tâche à effectuer"
-        v-model="todo"
+        v-model="newTodo"
       >
-      <button type="button">Ajouter</button>
+      <button :disabled="newTodo.length == 0">Ajouter</button>
     </fieldset>
-    <p>{{ todo }}</p>
   </form>
-  <div v-if="todos.length === 0">Vous n'avez pas de tâches à faire :(</div>
+  <div v-if="todos.length == 0">Vous n'avez pas de tâches à faire :(</div>
+  <div v-else>
+    <ul>
+      <li 
+        v-for="todo in todos"
+        :key="todo.date"
+      >
+      <label>
+        <input type="checkbox">
+        {{ todo.title }}
+      </label>
+      </li>
+    </ul>
+  </div>
 </template>
 
 
 <script setup>
   import { ref } from 'vue'
 
+  const newTodo = ref('')
   const todos = ref([])
-  const todo = ref('')
 
-  function addTodo() {
-    console.log('Add ToDo');
+  const addTodo = () => {
+    todos.value.push({
+      title: newTodo.value,
+      completed: false,
+      date: Date.now()
+    })
+    console.log(newTodo.value);
+    newTodo.value = ''
     
   }
 </script>
