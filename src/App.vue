@@ -13,11 +13,12 @@
   <div v-else>
     <ul>
       <li 
-        v-for="todo in todos"
+        v-for="todo in sortedTodos()"
         :key="todo.date"
+        :class="{completed: todo.completed}"
       >
       <label>
-        <input type="checkbox">
+        <input type="checkbox" v-model="todo.completed">
         {{ todo.title }}
       </label>
       </li>
@@ -30,7 +31,16 @@
   import { ref } from 'vue'
 
   const newTodo = ref('')
-  const todos = ref([])
+  const todos = ref([{
+      title: 'Taches effectué',
+      completed: true,
+      date: 1
+    }, {
+      title: 'Taches à faire',
+      completed: false,
+      date: 2
+    },
+  ])
 
   const addTodo = () => {
     todos.value.push({
@@ -40,10 +50,16 @@
     })
     console.log(newTodo.value);
     newTodo.value = ''
-    
+  }
+
+  const sortedTodos = () => {
+    return todos.value.toSorted((a, b) => a.completed > b.completed ? 1 : -1)
   }
 </script>
 
 <style scoped>
-
+  .completed {
+    opacity: .5;
+    text-decoration: line-through;
+  }
 </style>
