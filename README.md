@@ -12,3 +12,8 @@
 ## Computed properties
 1. Add computed propertie on sortedTodos function
 2. Dynamic information text when tasks is done
+
+## Components
+1. Create new component <Checkbox />
+2. creating props for passing information of parent to child
+3. creating emits (event) for passing information of child to parent

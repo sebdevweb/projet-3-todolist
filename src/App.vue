@@ -17,20 +17,22 @@
         :key="todo.date"
         :class="{completed: todo.completed}"
       >
-      <label>
-        <input type="checkbox" v-model="todo.completed">
-        {{ todo.title }}
-      </label>
+      <Checkbox :label="todo.title" 
+        @check="(p) => console.log('coché', p)" 
+        @uncheck="console.log('décoché')" 
+      />
       </li>
     </ul>
     <label><input type="checkbox" v-model="hideCompleted">Masquer les tâches effectuées.</label>
     <p v-if="remainingTodos > 0">{{ remainingTodos }} tâche{{ remainingTodos > 1 ? 's' : ''}} à restante{{remainingTodos > 1 ? 's' : ''}}</p>
+    <Checkbox :label="'Bonjour'"/>
   </div>
 </template>
 
 
 <script setup>
   import { computed, ref } from 'vue'
+  import Checkbox from './Checkbox.vue';
 
   const newTodo = ref('')
   const todos = ref([{
