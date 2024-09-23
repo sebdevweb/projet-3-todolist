@@ -23,6 +23,7 @@
       </label>
       </li>
     </ul>
+    <label><input type="checkbox" v-model="hideCompleted">Masquer les tâches effectuées.</label>
   </div>
 </template>
 
@@ -41,6 +42,7 @@
       date: 2
     },
   ])
+  const hideCompleted = ref(false)
 
   const addTodo = () => {
     todos.value.push({
@@ -53,7 +55,11 @@
   }
 
   const sortedTodos = () => {
-    return todos.value.toSorted((a, b) => a.completed > b.completed ? 1 : -1)
+    const sortedTodos =  todos.value.toSorted((a, b) => a.completed > b.completed ? 1 : -1)
+    if(hideCompleted.value == true) {
+      return sortedTodos.filter(t => t.completed == false)
+    }
+    return sortedTodos
   }
 </script>
 
