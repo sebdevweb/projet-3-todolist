@@ -1,4 +1,5 @@
 <template>
+  <Watchers />
   <button @click="showTimer = !showTimer">Show/Hide</button>
   <Timer v-if="showTimer == true" />
   <Layout>
@@ -11,7 +12,6 @@
     <template v-slot:footer>
       Contenu Footer
     </template>
-    
   </Layout>
   <form @submit.prevent="addTodo">
     <fieldset role="group">
@@ -49,6 +49,7 @@
   import Button from './Button.vue';
   import Layout from './Layout.vue';
   import Timer from './Timer.vue';
+import Watchers from './Watchers.vue';
 
   const newTodo = ref('')
   const todos = ref([])

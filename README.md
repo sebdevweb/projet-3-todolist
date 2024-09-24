@@ -22,3 +22,6 @@
 ## LifeCycle Components
 1. Fetch data from API with onMounted function
 2. LifeCycle: onMounted/onUnmounted examples with side effect problem
+
+## Watchers
+1. Add example 'simple' watcher on new component
