@@ -1,4 +1,17 @@
 <template>
+  <Layout>
+    
+    <template #aside>
+      Contenu Aside
+    </template>
+    <template v-slot:main>
+      Contenu Main
+    </template>
+    <template v-slot:footer>
+      Contenu Footer
+    </template>
+    
+  </Layout>
   <form @submit.prevent="addTodo">
     <fieldset role="group">
       <input 
@@ -18,8 +31,7 @@
         :class="{completed: todo.completed}"
       >
       <Checkbox :label="todo.title" 
-        @check="(p) => console.log('coché', p)" 
-        @uncheck="console.log('décoché')" 
+        
       />
       </li>
     </ul>
@@ -33,6 +45,8 @@
 <script setup>
   import { computed, ref } from 'vue'
   import Checkbox from './Checkbox.vue';
+  import Button from './Button.vue';
+  import Layout from './Layout.vue';
 
   const newTodo = ref('')
   const todos = ref([{
