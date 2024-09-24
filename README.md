@@ -18,3 +18,6 @@
 2. Creating props for passing information of parent to child
 3. Creating emits (event) for passing information of child to parent
 4. Creating slots components for passing information 
+
+## LifeCycle Components
+1. 
