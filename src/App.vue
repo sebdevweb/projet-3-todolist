@@ -43,22 +43,20 @@
 
 
 <script setup>
-  import { computed, ref } from 'vue'
+  import { computed, onMounted, ref } from 'vue';
   import Checkbox from './Checkbox.vue';
   import Button from './Button.vue';
   import Layout from './Layout.vue';
 
   const newTodo = ref('')
-  const todos = ref([{
-      title: 'Taches effectué',
-      completed: true,
-      date: 1
-    }, {
-      title: 'Taches à faire',
-      completed: false,
-      date: 2
-    },
-  ])
+  const todos = ref([])
+
+  onMounted(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos') // Récupère les données depuis ce serveur
+    .then(recup => recup.json()) // Récupère le json
+    .then(v => todos.value = v) // Liste de tâches à récupérer dans une variable 'v' et changer la valeur de la ref pour pouvoir récupérer les données depuis le serveur
+    
+  })
   const hideCompleted = ref(false)
 
   const addTodo = () => {
