@@ -20,4 +20,5 @@
 4. Creating slots components for passing information 
 
 ## LifeCycle Components
-1. 
+1. Fetch data from API with onMounted function
+2. LifeCycle: onMounted/onUnmounted examples with side effect problem
