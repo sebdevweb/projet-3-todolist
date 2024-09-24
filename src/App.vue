@@ -1,6 +1,7 @@
 <template>
+  <button @click="showTimer = !showTimer">Show/Hide</button>
+  <Timer v-if="showTimer == true" />
   <Layout>
-    
     <template #aside>
       Contenu Aside
     </template>
@@ -47,6 +48,7 @@
   import Checkbox from './Checkbox.vue';
   import Button from './Button.vue';
   import Layout from './Layout.vue';
+  import Timer from './Timer.vue';
 
   const newTodo = ref('')
   const todos = ref([])
@@ -58,6 +60,8 @@
     
   })
   const hideCompleted = ref(false)
+
+  const showTimer = ref(true)
 
   const addTodo = () => {
     todos.value.push({
